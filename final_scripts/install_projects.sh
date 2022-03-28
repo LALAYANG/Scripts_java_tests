@@ -1,5 +1,5 @@
 #clone and install projects
-#usage: bash ./ clone.sh projects.csv
+#usage: bash ./ install_projects.sh projects.csv
 
 projects_to_install=$1
 
