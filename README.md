@@ -1,3 +1,11 @@
+-new_idoft
+|—— ifixflakies_run_idoft
+|__ clone.sh
+|__ projects.csv
+
+
+
+
 # Scripts_java_tests
 Scripts for java flaky tests.
 
