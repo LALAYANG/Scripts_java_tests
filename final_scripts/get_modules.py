@@ -1,5 +1,7 @@
 # get all project-sha-module turples
-# usage :python get_modules.py
+# usage: python get_modules.py
+# input: idoft/pr-data.csv
+# output: projects_module.csv
 
 import csv
 
