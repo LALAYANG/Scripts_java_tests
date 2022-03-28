@@ -1,14 +1,14 @@
 # get all od tests and project-sha-module turples where the od tests are in
-# usage: python get_modules.py
+# usage: python3 get_modules.py
 # input: idoft/pr-data.csv
 # output: all_od_tests.csv projects_modules.csv
 
 import csv
 
-idoft_pr_data_path = '../pr-data.csv'
+idoft_pr_data_path = './pr-data.csv'
 
-output_od_tests_csv = '../all_od_tests.csv'
-output_projects_csv = '../projects_modules.csv'
+output_od_tests_csv = './all_od_tests.csv'
+output_projects_csv = './projects_modules.csv'
 
 od_tests_info = []
 project_module_info = []
