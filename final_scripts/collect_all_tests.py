@@ -19,16 +19,17 @@ def get_all_xml():
         files = os.listdir(eachline[4])
         project = eachline[2]
         module = eachline[3]
+        url = eachline[0]
         print(dir)
         for eachfile in files:
-            print(eachfile)
+            #print(eachfile)
             file_path = os.path.join(dir, eachfile)
             if ".xml" in file_path:
                 print(file_path)
-                get_all_tests(project, sha, module, file_path)
+                get_all_tests(url,project, sha, module, file_path)
 
 
-def get_all_tests(project,sha,module,xml_file):
+def get_all_tests(url,project,sha,module,xml_file):
     with open(xml_file) as fp:
         xml_content = BeautifulSoup(fp, features="xml")
         tout = []
@@ -46,7 +47,7 @@ def get_all_tests(project,sha,module,xml_file):
 
             if eachtest["name"] == eachtest["classname"] or eachtest["name"] == "":
                 t = xml_file[3]
-                failedconstructor = str.format("{},{},{},{},{},{}", project, sha, module, t, test_result, eachtest["time"])
+                failedconstructor = str.format("{},{},{},{},{},{},{}", url, sha, module, project, t, test_result, eachtest["time"])
                 break
             else:
                 t = str.format("{}.{}", eachtest["classname"], eachtest["name"])
@@ -54,7 +55,7 @@ def get_all_tests(project,sha,module,xml_file):
                     t = str.format("{}.{}=DUPLICATE", eachtest["classname"], eachtest["name"])
                 tests.add(t)
 
-            tout.append(str.format("{},{},{},{},{},{}", project, sha, module, t, test_result, eachtest["time"]))
+            tout.append(str.format("{},{},{},{},{},{},{}", url, sha, module, project, t, test_result, eachtest["time"]))
 
         if failedconstructor != "":
             print(failedconstructor)
