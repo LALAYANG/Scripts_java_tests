@@ -30,7 +30,7 @@ for ((i=1;i<=$linenum;i++));do
 	mod_install_result=$(grep -n "BUILD SUCCESS" ../../module_install_log/install_$project$module.log)
 
         if [[ $mod_install_result ]]; then
-	    dir=$(pwd)/ifixflakies_run_idoft/projects/$project/$module/target/surefire-reports
+	    dir=$(pwd)/$module/target/surefire-reports
             echo $url,$sha,$project,$module,$dir>>../../../xml_dir.csv
 
 	else

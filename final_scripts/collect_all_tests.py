@@ -3,7 +3,7 @@ import os
 import sys
 import csv
 
-xml_dir_csv = './ifixflakies_run_idoft/xml_dir.csv'
+xml_dir_csv = './xml_dir.csv'
 
 output_all_tests_csv = './all_tests_query.csv'
 
