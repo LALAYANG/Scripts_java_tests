@@ -62,7 +62,7 @@ https://github.com/TestingResearchIllinois/maven-surefire
     └── compile_project.csv: A file to record success/failure when cloning projects.
 └── final_result.csv
     Final result. 
-    In the format of: URL, SHA, module, 1st test, 1st test result, 1st test time, 2nd test, 2nd test result, 2nd test time, ND5
+    In the format of: URL, SHA, module, 1st test, 1st test result, 1st test time, 2nd test (OD test), 2nd test result, 2nd test time, MD5
     e.g., https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.helper.FieldTest.test2,pass,0,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,pass,3.462,3146513902aa1807e09d1de4629b4ccf
 
 ```
