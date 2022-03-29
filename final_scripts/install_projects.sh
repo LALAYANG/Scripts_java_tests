@@ -5,6 +5,7 @@ projects_to_install=$1
 
 mkdir -p $(pwd)/ifixflakies_run_idoft
 cd $(pwd)/ifixflakies_run_idoft
+mkdir -p $(pwd)/install_project_log
 mkdir -p $(pwd)/projects
 cd $(pwd)/projects
 
@@ -41,8 +42,8 @@ for ((i=1;i<=$linenum;i++));do
 	    echo $(pwd) | tee -a ../../clone_log
         git checkout $sha | tee -a ../../clone_log
 
-        mvn install -DskipTests | tee -a ../../install_project.log
-        install_result=$(grep -n "BUILD SUCCESS" ../../install_project.log)
+        mvn install -DskipTests | tee -a ../../install_project_log/install_$project.log
+        install_result=$(grep -n "BUILD SUCCESS" ../../install_project_log/install_$project.log)
         if [[ $install_result ]]; then
             echo "$project,$sha,Success" >> ../../compile_project.csv
         else echo "$project,$sha,Failure" >> ../../compile_project.csv
