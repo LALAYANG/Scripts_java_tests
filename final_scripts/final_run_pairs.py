@@ -49,6 +49,9 @@ def run_All_tests():
     hash_md5 = md5()
     pair_tests = open(test_before_od_csv,"r")
     pair_tests_reader = csv.reader(pair_tests)
+    with open(save_csv,"w",newline='') as save:
+            writer = csv.writer(save)
+            writer.writerow(['url','sha','module'])
 
     
     for eachline in pair_tests_reader:
@@ -71,6 +74,10 @@ def run_All_tests():
         xml_test_1st = dir +'TEST-'+'.'.join(test_1st.split('.')[0:-1])+'.xml'
         xml_od_test = dir +'TEST-'+'.'.join(od_test.split('.')[0:-1])+'.xml'
         #print(xml_test_1st,xml_od_test)
+        if(os.path.isfile(xml_test_1st)): 
+            os.remove(xml_test_1st)
+        if(os.path.isfile(xml_od_test)):
+            os.remove(xml_od_test)
 
         os.system('sh ./run_all_before_od.sh '+project+' '+module+' '+test_1st_method+' '+od_test_method+' '+md5_str)
         # print(result)
