@@ -10,40 +10,44 @@ save_csv = './final_result.csv'
 
 def get_output_xml_results(testcase_name, xml_file):
     os.system('echo $(pwd)')
-    with open(xml_file) as fp:
-        xml_content = BeautifulSoup(fp, features="xml")
-        tout = []
-        failedconstructor = ""
-        tests = set()
-        for eachtest in xml_content.testsuite.findAll("testcase"):
-            test_result = "unknown"
-            if eachtest.find('failure'):
-                test_result = "failure"
-            elif eachtest.find('error'):
-                test_result = "error"
+    try:
+        with open(xml_file) as fp:
+            xml_content = BeautifulSoup(fp, features="xml")
+            tout = []
+            failedconstructor = ""
+            tests = set()
+            for eachtest in xml_content.testsuite.findAll("testcase"):
+                test_result = "unknown"
+                if eachtest.find('failure'):
+                    test_result = "failure"
+                elif eachtest.find('error'):
+                    test_result = "error"
+                else:
+                    test_result = "pass"
+
+                if eachtest["name"] == eachtest["classname"] or eachtest["name"] == "":
+                    t = xml_file[3]
+                    failedconstructor = str.format("{},{},{}", t, test_result, eachtest["time"])
+                    break
+                else:
+                    t = str.format("{}.{}", eachtest["classname"], eachtest["name"])
+                    if t in tests:
+                        t = str.format("{}.{}=DUPLICATE", eachtest["classname"], eachtest["name"])
+                    tests.add(t)
+                tout.append(str.format("{},{},{}", t, test_result, eachtest["time"]))
+
+
+            if failedconstructor != "":
+                return failedconstructor
             else:
-                test_result = "pass"
-
-            if eachtest["name"] == eachtest["classname"] or eachtest["name"] == "":
-                t = xml_file[3]
-                failedconstructor = str.format("{},{},{}", t, test_result, eachtest["time"])
-                break
-            else:
-                t = str.format("{}.{}", eachtest["classname"], eachtest["name"])
-                if t in tests:
-                    t = str.format("{}.{}=DUPLICATE", eachtest["classname"], eachtest["name"])
-                tests.add(t)
-            tout.append(str.format("{},{},{}", t, test_result, eachtest["time"]))
-
-
-        if failedconstructor != "":
-            return failedconstructor
-        else:
-            for eachtest in tout:
-                print(eachtest)
-                if testcase_name in eachtest:
-                    return eachtest
-        return 'ERROR_Parse'
+                for eachtest in tout:
+                    print(eachtest)
+                    if testcase_name in eachtest:
+                        return eachtest
+            return 'ERROR_Parse'
+            
+    except FileNotFoundError:
+        return 'test not found'
 
 def run_All_tests():
     hash_md5 = md5()
@@ -51,7 +55,7 @@ def run_All_tests():
     pair_tests_reader = csv.reader(pair_tests)
     with open(save_csv,"w",newline='') as save:
             writer = csv.writer(save)
-            writer.writerow(['url','sha','module'])
+            writer.writerow(['url','sha','module','1st test', '1st test result', '1st test time', '2nd test', '2nd test result', '2nd test time', 'MD5'])
 
     
     for eachline in pair_tests_reader:
