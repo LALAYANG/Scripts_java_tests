@@ -15,15 +15,21 @@ def generate_final_data():
     od_tests = open(od_tests_csv,"r")
     od_tests_reader = csv.reader(od_tests)
 
-    for eachline in od_tests_reader:
-        for eachitem in all_tests_reader:
- #           print(eachline[0:3],eachitem[0:3])
+    for each_od in od_tests_reader:
+        od.append(each_od)
+    for each_test in all_tests_reader:
+        all.append(each_test)
+        
+    for eachline in od:
+        for eachitem in all:
+             #print(eachline[0:3],eachitem[0:3])
             if eachline[0:3] == eachitem[0:3]:
                # print(eachitem[0:3])
                 temp = eachitem[0:5]
                 temp.append(eachline[3])
                 temp.append(eachline[-1])
                 final.append(temp)
+
 
     print(len(final))
     num=0
