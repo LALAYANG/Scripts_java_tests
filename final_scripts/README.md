@@ -37,7 +37,7 @@ https://github.com/TestingResearchIllinois/maven-surefire
 ├── run_all_before_od.sh
 
 ├── pr-data.csv
-    Input file from iDoFT.
+    Input file from iDoFT. The input file can be any lines of iDoFT/pr-data.csv.
 
 ├── projects_modules.csv
     All modules and projects with OD tests.
@@ -69,6 +69,23 @@ https://github.com/TestingResearchIllinois/maven-surefire
 
 # Example
 Here is an example of one line from idoft. 
+- Input:
+```
+https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,OD,,,https://github.com/TestingResearchIllinois/idoft/issues/90
+```
+- Output: In `final_result.csv`
+```
+URL, SHA, module, 1st test, 1st test result, 1st test time, 2nd test (OD test), 2nd test result, 2nd test time, MD5
+...
+16 https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.test.user.TestBasic.testUpdateByPrimaryKey,pass,2.989,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,pass,0.016,b35ca3f1da69b8ed2ec14dddb1dc1c52
+17 https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.test.user.TestBasic.testDelete,pass,2.971,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,pass,0.001,84dd75154078ecfc93214d3822872dbf
+18 https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.test.user.TestBasic.testInsert,pass,2.866,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,failure,0.005,f1f63888bac79e887b516512f48bc1bf
+19 https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.test.user.TestBasic.testSelect,pass,2.978,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,pass,0.006,646ca4e5b0eb757b64d2eee32274facd
+20 https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.test.country.TestInsert.testDynamicInsertNull,pass,0.002,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,pass,3.09,a0a121d2653b302c45432eaaee80ebf1
+...
+```
+We can see in line 18, column 5 is 'pass', column 8 is 'failure', that means test `tk.mybatis.mapper.test.able.TestBasicAble.testInsert` fails as a victim after test `tk.mybatis.mapper.test.user.TestBasic.testInsert` is run.
+
 
 # Steps
 
@@ -101,7 +118,7 @@ Here is an example of one line from idoft.
 ```
 4. collect all tests in these modules
 - usage: `python3 collect_all_tests.py`
-- output: 
+- output: in ./
 ```
 ./all_tests.query.csv
 ```
