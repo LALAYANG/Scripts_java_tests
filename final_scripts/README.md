@@ -77,6 +77,7 @@ https://github.com/TestingResearchIllinois/maven-surefire
 Here is an example output of one line from idoft. 
 - Input:
 ```
+Project URL,SHA Detected,Module Path,Fully-Qualified Test Name (packageName.ClassName.methodName),Category,Status,PR Link,Notes
 https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,OD,,,https://github.com/TestingResearchIllinois/idoft/issues/90
 ```
 - Output: In `final_result.csv`,
