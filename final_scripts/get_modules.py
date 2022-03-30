@@ -4,8 +4,9 @@
 # output: all_od_tests.csv projects_modules.csv
 
 import csv
+import sys
 
-idoft_pr_data_path = './pr-data.csv'
+#idoft_pr_data_path = './pr-data.csv'
 
 output_od_tests_csv = './all_od_tests.csv'
 output_projects_csv = './projects_modules.csv'
@@ -14,7 +15,7 @@ od_tests_info = []
 project_module_info = []
 
 
-def get_all_od_tests():
+def get_all_od_tests(idoft_pr_data_path):
     pr_data = open(idoft_pr_data_path,"r")
     pr_data_reader = csv.reader(pr_data)
 
@@ -46,5 +47,5 @@ def get_projects_to_clone():
             writer.writerow(each)
 
 
-get_all_od_tests()
+get_all_od_tests(sys.argv[1])
 get_projects_to_clone()
