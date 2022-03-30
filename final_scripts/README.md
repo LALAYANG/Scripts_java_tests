@@ -85,6 +85,11 @@ URL, SHA, module, 1st test, 1st test result, 1st test time, 2nd test (OD test), 
 ...
 ```
 We can see in line 18, column 5 is 'pass', column 8 is 'failure', that means test `tk.mybatis.mapper.test.able.TestBasicAble.testInsert` fails as a victim after test `tk.mybatis.mapper.test.user.TestBasic.testInsert` is run.
+- To check whether this test is still flaky in the latest version:
+```
+python3 run_latest_sha.py https://github.com/abel533/Mapper Mapper base tk.mybatis.mapper.test.user.TestBasic.testInsert tk.mybatis.mapper.test.able.TestBasicAble.testInsert
+```
+
 
 
 # Steps
