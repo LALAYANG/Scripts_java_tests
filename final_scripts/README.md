@@ -67,10 +67,17 @@ https://github.com/TestingResearchIllinois/maven-surefire
 
 ```
 
+# Example
+Here is an example of one line from idoft. 
+
 # Steps
 
 1. get all the od tests and projects to install  
-- usage: `python3 get_modules.py`
+- usage: `python3 get_modules.py ./pr-data.csv`
+- input:
+```
+./pr-data.csv
+```
 - output:
 ```
 ./projects_modules.csv
