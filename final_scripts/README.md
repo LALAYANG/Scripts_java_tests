@@ -80,7 +80,7 @@ Here is an example output of one line from idoft.
 Project URL,SHA Detected,Module Path,Fully-Qualified Test Name (packageName.ClassName.methodName),Category,Status,PR Link,Notes
 https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,OD,,,https://github.com/TestingResearchIllinois/idoft/issues/90
 ```
-- Output: In `final_result.csv`,
+- Output: In `./final_result.csv`,
 ```
 URL, SHA, module, 1st test, 1st test result, 1st test time, 2nd test (OD test), 2nd test result, 2nd test time, MD5
 ...
