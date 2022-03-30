@@ -15,13 +15,13 @@ echo $linenum
 for ((i=1;i<=$linenum;i++));do
     for item in $i;do
         url=$(sed -n ${i}p $projects_to_install | cut -d "," -f1)
-   	    sha=$(sed -n ${i}p $projects_to_install | cut -d "," -f2)
+   	sha=$(sed -n ${i}p $projects_to_install | cut -d "," -f2)
         project=${url##*/}
-	    module=$(sed -n ${i}p $projects_to_install | cut -d "," -f3)
+	module=$(sed -n ${i}p $projects_to_install | cut -d "," -f3)
 
         rm -rf $project
 
-	    echo $url,$sha,$module
+	echo $url,$sha,$module
         echo Start to clone $project at: $(date) | tee -a ../clone_log
         timeout 600s git clone $url | tee -a ../clone_log
         exit_status=${PIPESTATUS[0]}
@@ -39,7 +39,7 @@ for ((i=1;i<=$linenum;i++));do
 	
 
         cd $project 
-	    echo $(pwd) | tee -a ../../clone_log
+	echo $(pwd) | tee -a ../../clone_log
         git checkout $sha | tee -a ../../clone_log
 
         mvn install -DskipTests | tee -a ../../install_project_log/install_$project.log
