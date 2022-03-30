@@ -74,12 +74,12 @@ https://github.com/TestingResearchIllinois/maven-surefire
 ```
 
 # Example
-Here is an example of one line from idoft. 
+Here is an example output of one line from idoft. 
 - Input:
 ```
 https://github.com/abel533/Mapper,3c0b3307011fad53f811e08d05147d94fc6c0d67,base,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,OD,,,https://github.com/TestingResearchIllinois/idoft/issues/90
 ```
-- Output: In `final_result.csv`
+- Output: In `final_result.csv`,
 ```
 URL, SHA, module, 1st test, 1st test result, 1st test time, 2nd test (OD test), 2nd test result, 2nd test time, MD5
 ...
@@ -99,7 +99,7 @@ e.g.,
 ```
 python3 run_latest_sha.py https://github.com/abel533/Mapper Mapper base tk.mybatis.mapper.test.user.TestBasic.testInsert tk.mybatis.mapper.test.able.TestBasicAble.testInsert
 ```
-Output: In `./final_result_latest_sha.csv', we can check the result in the format of :
+- Output: In `./final_result_latest_sha.csv', we can check the result in the format of :
 ```
 url,sha,module,1st test,1st test result,1st test time,2nd test,2nd test result,2nd test time,MD5
 https://github.com/abel533/Mapper,3120d10848663c94dabd8bf14164b4dd61f865d5,base,tk.mybatis.mapper.test.user.TestBasic.testInsert,pass,0.008,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,failure,0.009,3ece566fa75a83ba009a5deca8c67069
