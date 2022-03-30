@@ -22,8 +22,12 @@ https://github.com/TestingResearchIllinois/maven-surefire
     Get all the pairs<test_in_the_same_module,OD_test> to run.
 ├── final_run_pairs.py
     Run all the pairs and get the final result.
-└── run_all_before_od.sh
+├── run_all_before_od.sh
     A script called to run two tests in order.
+├── latest_sha_run_all_before_od.sh
+    A script for verifying flaky tests in the latest version.
+└── run_latest_sha.py
+    A script for verifying flaky tests in the latest version.
 ```
 
 ## All files (including input, scripts and results after all scripts are run)
@@ -35,6 +39,8 @@ https://github.com/TestingResearchIllinois/maven-surefire
 ├── final_pair.py
 ├── final_run_pairs.py
 ├── run_all_before_od.sh
+├── latest_sha_run_all_before_od.sh
+├── run_latest_sha.py
 
 ├── pr-data.csv
     Input file from iDoFT. The input file can be any lines of iDoFT/pr-data.csv.
@@ -85,10 +91,20 @@ URL, SHA, module, 1st test, 1st test result, 1st test time, 2nd test (OD test), 
 ...
 ```
 We can see in line 18, column 5 is 'pass', column 8 is 'failure', that means test `tk.mybatis.mapper.test.able.TestBasicAble.testInsert` fails as a victim after test `tk.mybatis.mapper.test.user.TestBasic.testInsert` is run.
-- To check whether this test is still flaky in the latest version:
+- To check whether this test is still flaky in the latest version: run `run_latest_sha.py` in the format of:
+```
+python3 run_latest_sha.py url project module test_1st od_test
+```
+e.g.,
 ```
 python3 run_latest_sha.py https://github.com/abel533/Mapper Mapper base tk.mybatis.mapper.test.user.TestBasic.testInsert tk.mybatis.mapper.test.able.TestBasicAble.testInsert
 ```
+Output: In `./final_result_latest_sha.csv', we can check the result in the format of :
+```
+url,sha,module,1st test,1st test result,1st test time,2nd test,2nd test result,2nd test time,MD5
+https://github.com/abel533/Mapper,3120d10848663c94dabd8bf14164b4dd61f865d5,base,tk.mybatis.mapper.test.user.TestBasic.testInsert,pass,0.008,tk.mybatis.mapper.test.able.TestBasicAble.testInsert,failure,0.009,3ece566fa75a83ba009a5deca8c67069
+```
+Still, in line 18, column 5 is 'pass', column 8 is 'failure', that means test `tk.mybatis.mapper.test.able.TestBasicAble.testInsert` fails as a victim in the latest version.
 
 
 
