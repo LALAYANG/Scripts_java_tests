@@ -140,7 +140,7 @@ Still, in line 18, column 5 is 'pass', column 8 is 'failure', that means test `t
 ```
 4. collect all tests in these modules
 - usage: `python3 collect_all_tests.py`
-- output: in ./
+- output:
 ```
 ./all_tests.query.csv
 ```
