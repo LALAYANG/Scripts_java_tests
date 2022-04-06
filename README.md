@@ -1,9 +1,4 @@
--new_idoft
-|—— ifixflakies_run_idoft
-|__ clone.sh
-|__ projects.csv
-
-
+# Please check all files in `./final_scripts`
 
 
 # Scripts_java_tests
